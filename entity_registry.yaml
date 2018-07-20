@@ -1,0 +1,290 @@
+switch.bedroom_heater:
+  config_entry_id:
+  name:
+  platform: wemo
+  unique_id: 221732K01019CF
+switch.bedroom_lamp:
+  config_entry_id:
+  name:
+  platform: wemo
+  unique_id: 221732K01019D3
+switch.ultibots:
+  config_entry_id:
+  name:
+  platform: wemo
+  unique_id: 221342K010164F
+sensor.aeotec_dsb09104_home_energy_meter_power:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110033986
+sensor.aeotec_dsb09104_home_energy_meter_power_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147961922
+sensor.aeotec_dsb09104_home_energy_meter_power_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185889858
+sensor.aeotec_dsb09104_home_energy_meter_energy:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110050306
+sensor.aeotec_dsb09104_home_energy_meter_energy_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978242
+sensor.aeotec_dsb09104_home_energy_meter_energy_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906178
+sensor.aeotec_dsb09104_home_energy_meter_previous_reading:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110050322
+sensor.aeotec_dsb09104_home_energy_meter_interval:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110050339
+sensor.aeotec_dsb09104_home_energy_meter_power_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110050434
+sensor.aeotec_dsb09104_home_energy_meter_exporting:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110050816
+sensor.aeotec_dsb09104_home_energy_meter_previous_reading_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978258
+sensor.aeotec_dsb09104_home_energy_meter_interval_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978275
+sensor.aeotec_dsb09104_home_energy_meter_power_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978370
+sensor.aeotec_dsb09104_home_energy_meter_previous_reading_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978386
+sensor.aeotec_dsb09104_home_energy_meter_interval_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978403
+sensor.aeotec_dsb09104_home_energy_meter_exporting_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-144115188147978752
+sensor.aeotec_dsb09104_home_energy_meter_previous_reading_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906194
+sensor.aeotec_dsb09104_home_energy_meter_interval_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906211
+sensor.aeotec_dsb09104_home_energy_meter_power_6:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906306
+sensor.aeotec_dsb09104_home_energy_meter_previous_reading_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906322
+sensor.aeotec_dsb09104_home_energy_meter_interval_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906339
+sensor.aeotec_dsb09104_home_energy_meter_exporting_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 4-216172782185906688
+binary_sensor.back_slider_sensor:
+  config_entry_id:
+  name: Back Slider
+  platform: zwave
+  unique_id: 7-72057594160349184
+sensor.back_slider_alarm_type:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414145
+sensor.back_slider_alarm_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414161
+sensor.back_slider_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414177
+sensor.back_slider_burglar:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414305
+binary_sensor.attached_garage_door_sensor:
+  config_entry_id:
+  name: Attached Garage Door
+  platform: zwave
+  unique_id: 8-72057594177126400
+switch.beroom_outlet_switch:
+  config_entry_id:
+  name: Makeup Room Outlet
+  platform: zwave
+  unique_id: 10-72057594210500608
+sensor.alarm_type:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191361
+sensor.alarm_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191377
+sensor.alarm_type_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528065
+sensor.alarm_level_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528081
+zwave.aeotec_zw090_zstick_gen5_us:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-1
+zwave.aeotec_zw089_recessed_door_sensor_gen5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-2
+zwave.aeotec_dsb09104_home_energy_meter:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-4
+zwave.ecolink_doorwindow_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-7
+zwave.attached_garage_door_sensor:
+  config_entry_id:
+  name: Zwave Attached Garage Door
+  platform: zwave
+  unique_id: node-8
+zwave.beroom_outlet_switch:
+  config_entry_id:
+  name: Zwave Makeup Room Outlet
+  platform: zwave
+  unique_id: node-10
+light.livingroom_dimmer:
+  config_entry_id:
+  name: Living Room Dimmer
+  platform: zwave
+  unique_id: 13-72057594260848641
+zwave.livingroom_dimmer:
+  config_entry_id:
+  name: Zwave Living Room Dimmer
+  platform: zwave
+  unique_id: node-13
+light.kitchen_dimmer:
+  config_entry_id:
+  name: Kitchen Dimmer
+  platform: zwave
+  unique_id: 14-72057594277625857
+zwave.kitchen_dimmer:
+  config_entry_id:
+  name: Zwave Kitchen Dimmer
+  platform: zwave
+  unique_id: node-14
+zwave.master_bedroom_dimmer:
+  config_entry_id:
+  name: Zwave Master bedroom dimmer
+  platform: zwave
+  unique_id: node-15
+light.master_bedroom_dimmer:
+  config_entry_id:
+  name: Master bedroom dimmer
+  platform: zwave
+  unique_id: 15-72057594294403073
+zwave.front_door_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-16
+binary_sensor.front_door_sensor:
+  config_entry_id:
+  name: Front Door Sensor
+  platform: zwave
+  unique_id: 16-72057594311344128
+zwave.basement_stairs_dimmer:
+  config_entry_id:
+  name: Zwave Basement Stairs
+  platform: zwave
+  unique_id: node-17
+light.basement_stairs_dimmer:
+  config_entry_id:
+  name: Basement Stairs Dimmer
+  platform: zwave
+  unique_id: 17-72057594327957505
+zwave.back_porch_light:
+  config_entry_id:
+  name: Zwave Back Porch Light
+  platform: zwave
+  unique_id: node-18
+zwave.front_exterior_light:
+  config_entry_id:
+  name: Zwave Front Exterior Lights
+  platform: zwave
+  unique_id: node-19
+zwave.front_hallway_light:
+  config_entry_id:
+  name: Zwave Front Hallway Light
+  platform: zwave
+  unique_id: node-20
+switch.back_porch_light:
+  config_entry_id:
+  name: Back Porch Light
+  platform: zwave
+  unique_id: 18-72057594344718336
+switch.front_exterior_light:
+  config_entry_id:
+  name: Front Exterior Light
+  platform: zwave
+  unique_id: 19-72057594361495552
+switch.front_hallway_light:
+  config_entry_id:
+  name: Front Hallway Light
+  platform: zwave
+  unique_id: 20-72057594378272768

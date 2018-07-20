@@ -1,0 +1,124 @@
+- platform: time_date
+- platform: darksky
+  api_key: !secret dsky_api
+  monitored_conditions:
+    - summary
+    - temperature
+    - hourly_summary
+    #- temperature_max
+- platform: pi_hole
+  host: !secret pihole_host
+  monitored_conditions:
+    - ads_blocked_today
+    - ads_percentage_today
+    - dns_queries_today
+    - domains_being_blocked
+    - queries_cached
+    - queries_forwarded
+    - unique_clients
+    - unique_domains
+
+- platform: mqtt
+  state_topic: 'shop/westwall/temphum'
+  name: 'West Wall Temperature'
+  unit_of_measurement: '°F'
+  value_template: '{{ value_json.temperature }}'
+
+- platform: mqtt
+  state_topic: 'shop/westwall/temphum'
+  name: 'West Wall Humidity'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.humidity }}'
+#sensor 3:
+- platform: mqtt
+  state_topic: 'shop/door/bay1'
+  name: 'Bay 1 Door'
+  value_template: '{{ value_json.state }}'
+
+#sensor 4:
+- platform: mqtt
+  state_topic: 'shop/door/bay2'
+  name: 'Bay 2 Door'
+  value_template: '{{ value_json.state }}'
+
+#sensor 5:
+- platform: mqtt
+  state_topic: 'shop/north/temphum'
+  name: 'North Wall Temperature'
+  unit_of_measurement: '°F'
+  value_template: '{{ value_json.temperature }}'
+
+#sensor 6:
+- platform: mqtt
+  state_topic: 'shop/north/temphum'
+  name: 'North Wall Humidity'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.humidity }}'
+
+#sensor shopmandoor:
+- platform: mqtt
+  state_topic: "shophass/binary_sensor/shop_door_sensor/state"
+  name: 'Man Door'
+#####END MQTT SHOP SENSORS#############
+
+
+####OctoPrint Sensor
+- platform: octoprint
+  name: OctoPrint
+  monitored_conditions:
+    - Current State
+    - Temperatures
+    - Job Percentage
+
+- platform: template
+  sensors:
+    dom_s8_ssid:
+      friendly_name: "Dom S8 SSID"
+      value_template: >-
+          {{ states.device_tracker.dom_phone.attributes.essid }}
+
+    dom_s8_tx_stats:
+      friendly_name: "Dom Tx Bytes"
+      unit_of_measurement: 'Mb/s'
+      value_template: >-
+          {{ (states.device_tracker.dom_phone.attributes.tx_bytes / 1048576) | round(2)  }}
+
+    dom_s8_rx_stats:
+      friendly_name: "Dom RX Bytes"
+      unit_of_measurement: 'Mb/s'
+      value_template: >-
+          {{ (states.device_tracker.dom_phone.attributes.rx_bytes / 1048576) | round(2)  }}
+
+    spencer_5x_ssid:
+      friendly_name: "5x S8 SSID"
+      value_template: >-
+          {{ states.device_tracker.spencer_phone.attributes.essid }}
+
+    spencer_5x_tx_stats:
+      friendly_name: "5x Tx Bytes"
+      unit_of_measurement: 'Mb/s'
+      value_template: >-
+          {{ (states.device_tracker.spencer_phone.attributes.tx_bytes / 1048576) | round(2)  }}
+
+    spencer_5x_rx_stats:
+      friendly_name: "5x RX Bytes"
+      unit_of_measurement: 'Mb/s'
+      value_template: >-
+          {{ (states.device_tracker.spencer_phone.attributes.rx_bytes / 1048576) | round(2)  }}
+
+    spencer_laptop_ssid:
+      friendly_name: "Laptop SSID"
+      value_template: >-
+          {{ states.device_tracker.spencer_laptop.attributes.essid }}
+
+    spencer_laptop_tx_stats:
+      friendly_name: "LaptopTx Bytes"
+      unit_of_measurement: 'Mb/s'
+      value_template: >-
+          {{ (states.device_tracker.spencer_laptop.attributes.tx_bytes / 1048576) | round(2)  }}
+
+    spencer_laptop_rx_stats:
+      friendly_name: "Laptop RX Bytes"
+      unit_of_measurement: 'Mb/s'
+      value_template: >-
+          {{ (states.device_tracker.spencer_laptop.attributes.rx_bytes / 1048576) | round(2)  }}

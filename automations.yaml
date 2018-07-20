@@ -1,0 +1,448 @@
+- id: turn_on_hallway_light
+  alias: Light Turn on hallway light
+  trigger:
+  - entity_id: binary_sensor.front_door_sensor
+    platform: state
+    to: 'on'
+  condition:
+  - after: sunset
+    after_offset: -01:00:00
+    condition: sun
+  action:
+  - data:
+      entity_id: switch.front_hallway_light
+    service: homeassistant.turn_on
+  hide_entity: false
+- id: turn_off_front_hallway_1min
+  alias: Light Turn off front hallway light after 1 minute
+  trigger:
+  - entity_id: binary_sensor.front_door_sensor
+    for:
+      minutes: 1
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      entity_id: switch.front_hallway_light
+    service: homeassistant.turn_off
+  hide_entity: false
+- id: '1495775171971'
+  alias: Garage Door Open Lights On Bay 1
+  trigger:
+  - entity_id: sensor.bay_1_door
+    from: closed
+    platform: state
+    to: open
+  action:
+  - data:
+      entity_id: switch.shop_bay_1
+    service: rest_command.turn_on_shop_bay1
+- id: '1498073674798'
+  alias: Garage Door Open Lights On Bay 2
+  trigger:
+  - entity_id: sensor.bay_2_door
+    from: closed
+    platform: state
+    to: open
+  action:
+  - data:
+      entity_id: switch.shop_bay_1
+    service: rest_command.turn_on_shop_bay1
+- id: '1506399258117'
+  alias: Bot Front Door
+  trigger:
+  - entity_id: binary_sensor.front_door_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - alias: Front Door Open Time
+    data:
+      data:
+        photo:
+        - url: !secret fd_auto_cam
+      message: Front Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Front Door Bot
+    service: notify.Doors
+  - alias: Front Door Open Time
+    data:
+      message: Front Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Front Door Bot
+    service: notify.Doors
+- action:
+  - alias: Rear Slider Open
+    data:
+      message: Rear Slider  is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Rear Slider Bot
+    service: notify.Doors
+  alias: Bot Rear Slider
+  condition: []
+  id: '1506409486099'
+  trigger:
+  - entity_id: binary_sensor.back_slider_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+- action:
+  - alias: Attached Garage Door Open
+    data:
+      message: Attached Garage Door  is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Attached Garage Bot
+    service: notify.Doors
+  alias: Bot Attached Garage Door
+  condition: []
+  id: '1506409752122'
+  trigger:
+  - entity_id: binary_sensor.attached_garage_door_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+- action:
+  - alias: Shop Man Door
+    data:
+      data:
+        photo:
+        - url: !secret smdi_auto_cam
+      message: Shop Man Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Man Door Bot
+    service: notify.Doors
+  - alias: Shop Man Door Time
+    data:
+      message: Shop Man Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Man Door Bot
+    service: notify.Doors
+  alias: Bot Shop Man Door
+  condition:
+  - condition: state
+    entity_id: switch.shop_bay_1
+    state: 'on'
+  id: '1506409968461'
+  trigger:
+  - entity_id: sensor.man_door
+    from: 'off'
+    platform: state
+    to: 'on'
+- id: '1508694762027'
+  alias: Light Turn On Hallway Light After Midnight
+  trigger:
+  - entity_id: binary_sensor.front_door_sensor
+    platform: state
+    to: 'on'
+  condition:
+  - after: 00:00:00
+    before: 07:30:00
+    condition: time
+  action:
+  - data:
+      entity_id: switch.front_hallway_light
+    service: homeassistant.turn_on
+- action:
+  - alias: Shop Man Door Exterior Notify
+    data:
+      data:
+        photo:
+        - url: !secret smde_auto_cam
+      message: Shop Man Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Man Door Bot
+    service: notify.Doors
+  - alias: Shop Man Door Exterior Time
+    data:
+      message: Shop Man Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Man Door Bot
+    service: notify.Doors
+  alias: Bot Shop Man Door Exterior
+  condition:
+  - condition: state
+    entity_id: switch.shop_bay_1
+    state: 'off'
+  - condition: state
+    entity_id: switch.shop_bay_2
+    state: 'off'
+  id: '1510587971179'
+  trigger:
+  - entity_id: sensor.man_door
+    from: 'off'
+    platform: state
+    to: 'on'
+- action:
+  - alias: Shop Bay 1 Door Exterior Notify
+    data:
+      data:
+        photo:
+        - url: !secret sbde_auto_cam
+      message: Shop Bay 1 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Bay 1 Exterior Door Bot
+    service: notify.Doors
+  - alias: Shop Bay 1 Door Exterior Time
+    data:
+      message: Shop Bay 1 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Bay 1 Door Bot
+    service: notify.Doors
+  alias: Bot Shop Bay 1 Door Exterior
+  condition:
+  - condition: state
+    entity_id: switch.shop_bay_1
+    state: 'off'
+  - condition: state
+    entity_id: switch.shop_bay_2
+    state: 'off'
+  id: '1510588748717'
+  trigger:
+  - entity_id: sensor.bay_1_door
+    from: closed
+    platform: state
+    to: open
+- action:
+  - alias: Shop Bay 2 Door Exterior Notify
+    data:
+      data:
+        photo:
+        - url: !secret sbde_auto_cam
+      message: Shop Bay 2 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Man Door Bot
+    service: notify.Doors
+  - alias: Shop Bay 2 Door Exterior Time
+    data:
+      message: Shop Bay 2 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Bay 2 Door is open
+    service: notify.Doors
+  alias: Bot Shop Bay 2 Door Exterior
+  condition:
+  - condition: state
+    entity_id: switch.shop_bay_1
+    state: 'off'
+  - condition: state
+    entity_id: switch.shop_bay_2
+    state: 'off'
+  id: '1510589061189'
+  trigger:
+  - entity_id: sensor.bay_2_door
+    from: closed
+    platform: state
+    to: open
+- action:
+  - alias: Shop Bay 1 Door Notify
+    data:
+      data:
+        photo:
+        - url: !secret sbdi_auto_cam
+      message: Shop Bay 1 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Man Door Bot
+    service: notify.Doors
+  - alias: Shop Bay 1 Door Notify Time
+    data:
+      message: Shop Bay 1 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Bay 1 Door Bot
+    service: notify.Doors
+  alias: Bot Shop Bay 1 Door Interior
+  condition:
+  - condition: state
+    entity_id: switch.shop_bay_1
+    state: 'on'
+  id: '1510589786967'
+  trigger:
+  - entity_id: sensor.bay_1_door
+    from: closed
+    platform: state
+    to: open
+- action:
+  - alias: Shop Bay 2 Door Notify
+    data:
+      data:
+        photo:
+        - url: !secret sbdi_auto_cam
+      message: Shop Bay 2 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Bay 1 Door Bot
+    service: notify.Doors
+  - alias: Shop Bay 2 Door Notify Time
+    data:
+      message: Shop Bay 2 Door is open {{now().strftime("%H:%M:%S %Y-%m-%d")}}
+      title: Shop Bay 2 Door Bot
+    service: notify.Doors
+  alias: Bot Shop Bay 2 Door Interior
+  condition:
+  - condition: state
+    entity_id: switch.shop_bay_1
+    state: 'on'
+  id: '1510589887075'
+  trigger:
+  - entity_id: sensor.bay_2_door
+    from: closed
+    platform: state
+    to: open
+- id: '1513576219651'
+  alias: Bedroom Light Alarm
+  trigger:
+  - at: 03:25:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      brightness: 255
+      entity_id: light.master_bedroom_dimmer
+    service: light.turn_on
+- action:
+  - data:
+      entity_id: switch.bedroom_heater
+    service: switch.turn_on
+  alias: Bedroom Heater Turn On 67
+  condition: []
+  id: '1516524372656'
+  trigger:
+  - below: '67'
+    entity_id: sensor.bedroom_temperature
+    platform: numeric_state
+- action:
+  - data:
+      entity_id: switch.bedroom_heater
+    service: switch.turn_off
+  alias: Bedroom Heater Turn Off 70
+  condition: []
+  id: '1516524500535'
+  trigger:
+  - above: '70'
+    entity_id: sensor.bedroom_temperature
+    platform: numeric_state
+- action:
+  - data:
+      name: dark_theme
+    service: frontend.set_theme
+  alias: Set theme at startup
+  condition: []
+  id: '1519631685897'
+  trigger:
+  - event: start
+    platform: homeassistant
+- id: '1528090840694'
+  alias: Dimmer - Living Room Light - Adjust Brightness
+  trigger:
+  - entity_id: input_number.lr_dimmer
+    platform: state
+  condition: []
+  action:
+  - data_template:
+      brightness: '{{ trigger.to_state.state | int }}'
+      entity_id: light.livingroom_dimmer
+    service: light.turn_on
+- id: '1528091924141'
+  alias: Dimmer - Kitchen - Adjust Brightness
+  trigger:
+  - entity_id: input_number.kitchen_dimmer
+    platform: state
+  condition: []
+  action:
+  - data_template:
+      brightness: '{{ trigger.to_state.state | int }}'
+      entity_id: light.kitchen_dimmer
+    service: light.turn_on
+- id: '1528091974758'
+  alias: Dimmer - Master Bedroom - Adjust Brightness
+  trigger:
+  - entity_id: input_number.br_dimmer
+    platform: state
+  condition: []
+  action:
+  - data_template:
+      brightness: '{{ trigger.to_state.state | int }}'
+      entity_id: light.master_bedroom_dimmer
+    service: light.turn_on
+- id: '1531556875763'
+  alias: Light Turn Off Exterior Lights
+  trigger:
+  - event: sunrise
+    offset: '-1:00'
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.front_exterior_light
+    service: homeassistant.turn_off
+  - data:
+      entity_id: switch.back_porch_light
+    service: homeassistant.turn_off
+- id: '1531556978462'
+  alias: Light Turn On Exterior Lights
+  trigger:
+  - event: sunset
+    offset: '-1:00'
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.front_exterior_light
+    service: homeassistant.turn_on
+  - data:
+      entity_id: switch.back_porch_light
+    service: homeassistant.turn_on
+- id: '1531630505744'
+  alias: Rest Turn Off Shop South Wall outlet
+  trigger:
+  - entity_id: switch.south_wall_outlet
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: rest_command.turn_off_shop_south_outlet
+- id: '1531632434159'
+  alias: Rest Turn On Shop South Wall outlet
+  trigger:
+  - entity_id: switch.south_wall_outlet
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: rest_command.turn_on_shop_south_outlet
+- id: '1531632522057'
+  alias: Rest Turn Off Shop Bay 1 Light
+  trigger:
+  - entity_id: switch.shop_bay_1_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: rest_command.turn_off_shop_bay1
+- id: '1531632555724'
+  alias: Rest Turn On Shop Bay 1 Light
+  trigger:
+  - entity_id: switch.shop_bay_1_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: rest_command.turn_on_shop_bay1
+- id: '1531632588996'
+  alias: Rest Turn Off Shop Bay 2 Light
+  trigger:
+  - entity_id: switch.shop_bay_2_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: rest_command.turn_off_shop_bay2
+- id: '1531632644985'
+  alias: Rest Turn On Shop Bay 2 Light
+  trigger:
+  - entity_id: switch.shop_bay_2_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: rest_command.turn_on_shop_bay2
+- id: '1531713039635'
+  alias: Garage Man Door Turn On Lights
+  trigger:
+  - entity_id: sensor.man_door
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: rest_command.turn_on_shop_bay1
+  - service: rest_command.turn_on_shop_bay2

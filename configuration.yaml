@@ -1,0 +1,180 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret secret_lat
+  longitude: !secret secret_lon
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 656
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Los_Angeles
+  customize: !include customize.yaml
+
+
+
+# Enables the frontend
+frontend:
+  themes: !include themes.yaml
+# Enables configuration UI
+config:
+
+panel_iframe:
+  terminal:
+    title: 'Terminal'
+    icon: mdi:console
+    url: 'https://homebian:4200'
+  cloud_9:
+    title: 'Cloud9'
+    icon: mdi:chart-histogram
+    url: 'https://homebian:8181'
+
+
+http:
+  # Uncomment this to add a password (recommended!)
+   api_password: !secret http_password
+  # Uncomment this if you are using SSL or running in Docker etc
+   base_url: !secret base_url
+   ssl_certificate: !secret ssl_cert
+   ssl_key: !secret ssl_key
+
+# Checks for available updates
+updater:
+   include_used_components: true
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+recorder:
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+#sensor:
+# platform: yr
+
+mqtt:
+#  discovery: true
+#  discovery_prefix: shophass
+  broker: !secret broker_ip
+  port: 1883
+  client_id: home-assistant-1
+  username: !secret mosquitto_un
+  password: !secret mosquitto_pw
+  protocol: 3.1.1
+  keepalive: 15
+  
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+zwave:
+  usb_path: /dev/ttyACM0
+
+
+ecobee:
+  api_key: !secret ecobee_api
+
+# Text to speech
+tts:
+  platform: google
+
+group: !include groups.yaml
+binary_sensor: !include binary_sensors.yaml
+automation: !include automations.yaml
+camera: !include cameras.yaml
+sensor: !include sensor.yaml
+history_graph: !include history_graph.yaml
+rest_command: !include rest_command.yaml
+
+
+
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_chat_ids
+
+notify:
+  - name: Doors
+    platform: telegram
+    chat_id: !secret telegram_chat_ids
+
+
+mqtt_statestream:
+  base_topic: homeassistant
+  
+octoprint:
+    host: !secret octo_api_ip
+    api_key: !secret octo_api
+    bed: true
+    number_of_tools: 1
+
+
+
+cover:
+  - platform: myq
+    username: !secret myq_un
+    password: !secret myq_pw
+    type: liftmaster
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_host
+    username: !secret unifi_un
+    password: !secret unifi_pw
+    verify_ssl: false
+    detection_time: 300
+    ssid_filter:
+      - !secret unifi_ssid1
+      - !secret unifi_ssid2
+
+logger:
+  default: warning
+
+switch:
+  - platform: mqtt
+    name: "South Wall Outlet"
+    state_topic: "shophass/switch/south_wall_outlet_switch/state"
+    command_topic: "shophass/switch/south_wall_outlet_switch/state"
+    payload_on: "on"
+    payload_off: "off"
+  - platform: mqtt
+    name: "Shop Bay 1 Switch"
+    state_topic: "shophass/switch/shop_bay1/state"
+    command_topic: "shophass/switch/shop_bay1/state"
+    payload_on: "on"
+    payload_off: "off"
+  - platform: mqtt
+    name: "Shop Bay 2 Switch"
+    state_topic: "shophass/switch/shop_bay2/state"
+    command_topic: "shophass/switch/shop_bay2/state"
+    payload_on: "on"
+    payload_off: "off"
+
+input_number:
+  br_dimmer:
+    name: Bed Room Brightness
+    initial: 100
+    min: 1
+    max: 254
+    step: 1
+  kitchen_dimmer:
+    name: Kitchen Brightness
+    initial: 100
+    min: 1
+    max: 254
+    step: 1
+  lr_dimmer:
+    name: Living Room Brightness
+    initial: 100
+    min: 1
+    max: 254
+    step: 1

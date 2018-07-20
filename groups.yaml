@@ -1,0 +1,333 @@
+####################################################
+#                                                  														  #
+#                                          VIEWS                        							  #
+#                                                  														  #
+####################################################
+
+ default_view:
+   name: Home
+   view: yes
+   icon: mdi:home-assistant
+   entities:
+   - group.ecobee
+   - group.weather_ecobee
+   - group.weather
+   - group.input_sliders
+# #   - group.all_lights
+# #   - group.all_switches
+   - group.light_switches
+   - group.outlets
+   - group.contact_sensors
+   - group.front_door_camera
+   - group.field_camera
+   - group.man_door
+
+ networking_view:
+   view: yes
+   icon: mdi:network
+   name: devices
+   entities:
+   - group.s8
+   - group.5x
+   - group.hp
+   - group.pihole
+   - group.z_wave
+   
+ octoprint_view:
+   view: yes
+   icon: mdi:printer-3d
+   name: Octoprint
+   entities:
+   - group.octoprint
+   - group.octoprint_camera
+
+ home_energy_view:
+   view: yes
+   icon: mdi:power-settings
+   name: Energy Consumption
+   entities:
+   - group.home_energy
+
+ shop_view:
+   view: yes
+   icon: mdi:garage-open
+   name: Shop Objects
+   entities:
+   - group.shop_sensors
+   - group.shop_temp
+   - group.shop_humidity
+   - group.shop_west_temp_graph
+   - group.shop_west_humidity_graphs
+   - group.shop_north_wall_temp_graphs
+   - group.shop_north_wall_humidity_graphs
+
+ automations_view:
+   view: yes
+   icon: mdi:home-automation
+   name: Automations
+   entities:
+   #- group.all_automations
+   - group.shop_switch_automations
+   - group.shop_bot_automations
+   - group.home_switch_automations
+   - group.home_bot_automations
+
+ security_camera_view:
+   view: yes
+   icon: mdi:cctv
+   name: Security Cameras
+   entities:
+   - group.front_door_camera
+   - group.field_camera
+   - group.man_door
+#   - group.test_streams
+
+
+####################################################
+#                                                                                                            #
+#                                           GROUPING                                            #
+#                                                                                                            #
+#################################################### 
+ ecobee:
+   name: ecobee
+   entities:
+   - climate.home
+   - binary_sensor.home_occupancy
+   - sensor.home_humidity
+   - sensor.home_temperature
+   - sensor.bedroom_temperature
+   - binary_sensor.bedroom_occupancy
+   - sensor.makeup_room_temperature
+   - binary_sensor.makeup_room_occupancy
+   - sensor.office_temperature
+   - binary_sensor.office_occupancy
+
+ weather_ecobee:
+   name: ecobee weather
+   entities:
+   - weather.home
+   
+
+ contact_sensors:
+  name: Doors
+  entities:
+   - binary_sensor.attached_garage_door_sensor
+   - binary_sensor.front_door_sensor
+   - binary_sensor.back_slider_sensor
+   - binary_sensor.aeotec_zw089_recessed_door_sensor_gen5_sensor
+
+ shop_sensors:
+  name: Shop
+  entities:
+   - sensor.man_door
+   - sensor.bay_1_door
+   - sensor.bay_2_door
+#   - binary_sensor.bay_1_door
+#   - binary_sensor.bay_2_door
+   - cover.bay_1_opener
+   - cover.bay_2_opener
+   - switch.shop_bay_1_switch
+   - switch.shop_bay_2_switch
+   - switch.south_wall_outlet
+   
+ shop_temp:
+  name: Shop Temp
+  entities:
+   - sensor.north_wall_temperature
+   - sensor.west_wall_temperature
+
+ shop_humidity:
+  name: Shop Humidity
+  entities:
+   - sensor.north_wall_humidity
+   - sensor.west_wall_humidity
+   
+ shop_west_temp_graph:
+  name: West Temp Graphs
+  entities:
+   - history_graph.west_wall_temp
+   
+ shop_west_humidity_graphs:
+  name: West Wall Humidity Graphs
+  entities:
+   - history_graph.west_wall_humidity
+   
+ shop_north_wall_temp_graphs:
+  name: North Wall Temp Graphs
+  entities:
+   - history_graph.north_wall_temp
+
+ shop_north_wall_humidity_graphs:
+  name: North Wall Humidity Graphs
+  entities:
+   - history_graph.north_wall_humidity
+
+ shop_bot_automations:
+  name: Shop Bot Automations
+  entities:
+   - automation.bot_shop_bay_1_door_exterior
+   - automation.bot_shop_bay_1_door_interior
+   - automation.bot_shop_bay_2_door_exterior
+   - automation.bot_shop_bay_2_door_interior
+   - automation.bot_shop_man_door
+   - automation.bot_shop_man_door_exterior
+
+ shop_switch_automations:
+  name: Shop Automations
+  entities:
+   - automation.garage_door_open_lights_on_bay_1
+   - automation.garage_door_open_lights_on_bay_2
+   - automation.bot_shop_bay_1_door_exterior
+   - automation.bot_shop_bay_1_door_interior
+   - automation.bot_shop_bay_2_door_exterior
+   - automation.bot_shop_bay_2_door_interior
+
+ home_bot_automations:
+  name: Home Bot Automations
+  entities:
+   - automation.bot_attached_garage_door
+   - automation.bot_front_door
+   - automation.bot_rear_slider
+
+ home_switch_automations:
+  name: Home Automations
+  entities:
+   - automation.bedroom_heater_turn_off_70
+   - automation.bedroom_heater_turn_on_67
+   - automation.bedroom_light_alarm
+   - automation.turn_off_front_hallway_light_after_1_minute
+   - automation.turn_on_hallway_light
+   - automation.turn_on_hallway_light_after_midnight
+   - automation.light_turn_off_exterior_lights
+   - automation.light_turn_on_exterior_lights
+   - automation.set_theme_at_startup
+
+ pi-hole:
+  name: Pi-Hole
+  entities:
+   - sensor.pihole_ads_blocked_today
+   - sensor.pihole_ads_percentage_blocked_today
+   - sensor.pihole_dns_queries_cached
+   - sensor.pihole_dns_queries_forwarded
+   - sensor.pihole_dns_queries_today
+   - sensor.pihole_dns_unique_clients
+   - sensor.pihole_dns_unique_domains
+   - sensor.pihole_domains_blocked
+
+ S8:
+  name: S8
+  entities:
+   - device_tracker.dom_phone
+   - sensor.dom_s8_ssid
+   - sensor.dom_s8_tx_stats
+   - sensor.dom_s8_rx_stats
+   - history_graph.s8_data_tx_rx
+ 5x:
+  name: 5x
+  entities:
+   - device_tracker.spencer_phone
+   - sensor.spencer_5x_ssid
+   - sensor.spencer_5x_tx_stats
+   - sensor.spencer_5x_rx_stats
+   - history_graph.5x_data_tx_rx
+ HP:
+  name: HP
+  entities:
+   - device_tracker.spencer_laptop
+   - sensor.spencer_laptop_ssid
+   - sensor.spencer_laptop_tx_stats
+   - sensor.spencer_laptop_rx_stats
+   - history_graph.laptop_data_tx_rx
+
+ weather:
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_temperature
+    - sun.sun
+    
+ octoprint:
+  name: octoprint
+  entities:
+   - binary_sensor.octoprint_printing
+   - binary_sensor.octoprint_printing_error
+   - sensor.octoprint_actual_bed_temp
+   - sensor.octoprint_actual_tool0_temp
+   - sensor.octoprint_current_state
+   - sensor.octoprint_job_percentage
+   - sensor.octoprint_target_bed_temp
+   - sensor.octoprint_target_tool0_temp
+ 
+ octoprint_camera:
+  name: octoprint
+  entities:
+#   - camera.mjpeg_camera
+   - camera.octoprint
+
+ front_door_camera:
+  name: Front Door
+  entities:
+   - camera.front_door_camera
+ field_camera:
+  name: Field Camera
+  entities:
+   - camera.shop_field_camera
+ man_door:
+  name: Man Door
+  entities:
+   - camera.shop_man_door_camera
+ # test_streams:
+ #  name: Test Streams
+ #  entities:
+ #   - camera.front_door_camera_rtmp
+   
+ home_energy:
+  name: home energy monitor
+  entities:
+   - sensor.aeotec_dsb09104_home_energy_meter_energy
+   - sensor.aeotec_dsb09104_home_energy_meter_energy_2
+   - sensor.aeotec_dsb09104_home_energy_meter_energy_3
+   - sensor.aeotec_dsb09104_home_energy_meter_exporting
+   - sensor.aeotec_dsb09104_home_energy_meter_exporting_2
+   - sensor.aeotec_dsb09104_home_energy_meter_exporting_3
+   - sensor.aeotec_dsb09104_home_energy_meter_interval
+   - sensor.aeotec_dsb09104_home_energy_meter_interval_2
+   - sensor.aeotec_dsb09104_home_energy_meter_interval_3
+   - sensor.aeotec_dsb09104_home_energy_meter_interval_4
+   - sensor.aeotec_dsb09104_home_energy_meter_interval_5
+   - sensor.aeotec_dsb09104_home_energy_meter_power
+   - sensor.aeotec_dsb09104_home_energy_meter_power_2
+   - sensor.aeotec_dsb09104_home_energy_meter_power_3
+   - sensor.aeotec_dsb09104_home_energy_meter_power_4
+   - sensor.aeotec_dsb09104_home_energy_meter_power_5
+   - sensor.aeotec_dsb09104_home_energy_meter_power_6
+   - sensor.aeotec_dsb09104_home_energy_meter_previous_reading
+   - sensor.aeotec_dsb09104_home_energy_meter_previous_reading_2
+   - sensor.aeotec_dsb09104_home_energy_meter_previous_reading_3
+   - sensor.aeotec_dsb09104_home_energy_meter_previous_reading_4
+   - sensor.aeotec_dsb09104_home_energy_meter_previous_reading_5
+
+ input_sliders:
+  name: Dimmers
+  entities:
+   - light.livingroom_dimmer
+   - input_number.lr_dimmer
+   - light.kitchen_dimmer
+   - input_number.kitchen_dimmer
+   - light.master_bedroom_dimmer
+   - input_number.br_dimmer
+   - light.basement_stairs_dimmer
+ light_switches:
+  name: Light Switches
+  entities:
+   - switch.back_porch_light
+   - switch.front_exterior_light
+   - switch.front_hallway_light
+   - switch.bedroom_lamp
+ outlets:
+  name: Outlets
+  entities:
+   - switch.bedroom_heater
+   - switch.beroom_outlet_switch
+   - switch.south_wall_outlet
+   - switch.ultibots

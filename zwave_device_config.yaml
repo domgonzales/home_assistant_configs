@@ -1,0 +1,9 @@
+light.inovelli_unknown_type1f01_id1f01_level:
+  ignored: false
+  polling_intensity: 10
+light.level:
+  ignored: false
+  polling_intensity: 10
+light.level_2:
+  ignored: false
+  polling_intensity: 600

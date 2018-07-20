@@ -1,0 +1,37 @@
+gr1:
+  name: S8 Data TX RX
+  entities:
+    - sensor.dom_s8_tx_stats
+    - sensor.dom_s8_rx_stats
+  hours_to_show: 24
+  refresh: 60
+gr2:
+  name: 5x Data TX RX
+  entities:
+    - sensor.spencer_5x_tx_stats
+    - sensor.spencer_5x_rx_stats
+  hours_to_show: 24
+  refresh: 60
+gr3:
+  name: Laptop Data TX RX
+  entities:
+    - sensor.spencer_laptop_tx_stats
+    - sensor.spencer_laptop_rx_stats
+  hours_to_show: 24
+  refresh: 60
+gr4:
+  name: West Wall Temp
+  entities:
+    - sensor.west_wall_temperature
+gr5:
+  name: North Wall Temp
+  entities:
+    - sensor.north_wall_temperature
+gr6:
+  name: West Wall Humidity
+  entities:
+    - sensor.west_wall_humidity
+gr7:
+  name: North Wall Humidity
+  entities:
+    - sensor.north_wall_humidity

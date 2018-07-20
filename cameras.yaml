@@ -1,0 +1,26 @@
+##############  Example input  #######################
+###########  Works for REOLINK Cameras  ##############
+##rtsp://usernam:password@1.1.1/h264Preview_01_sub####
+## another option for rtmp on Reolink cams would be###
+## rtmp://x.x.x.x/bcs/channel0_ext.bcs?channel=0&stream=2&user=<un>&password=<pw>##
+######################################################
+
+
+  - platform: mjpeg
+    name: octoprint
+    mjpeg_url: !secret octo_camera
+    
+  - platform: ffmpeg
+    input: !secret fd_cam
+    extra_arguments: '-q:v 2 -r 15 -vf "scale=1300:768"'
+    name: front_door_camera
+    
+  - platform: ffmpeg
+    input: !secret smd_cam
+    extra_arguments: '-q:v 2 -r 15 -vf "scale=1300:768"'
+    name: shop_man_door_camera
+
+  - platform: ffmpeg
+    input: !secret sfc_cam
+    extra_arguments: '-q:v 2 -r 15 -vf "scale=1300:768"'
+    name: shop_field_camera

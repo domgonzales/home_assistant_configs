@@ -1,0 +1,56 @@
+##################################################################
+## These are to control zwave switches on a second Hass instance##
+## that is remote from my main Hass instance it is internal and ##
+## that is why there is no password. If this was public there   ##
+## there would be a password                                    ##
+##################################################################
+  turn_on_shop_south_outlet:
+    method: POST
+    url: 'http://192.168.0.15:8123/api/services/switch/turn_on'
+    headers:
+#    password: 'xxxxxx'
+      content_type: application/json
+    payload: '{"entity_id": "switch.south_wall_outlet_switch"}'
+    
+  turn_off_shop_south_outlet:
+    method: POST
+    url: 'http://192.168.0.15:8123/api/services/switch/turn_off'
+    headers:
+#    password: 'xxxxxx'
+      content_type: application/json
+    payload: '{"entity_id": "switch.south_wall_outlet_switch"}'
+
+  turn_on_shop_bay1:
+    method: POST
+    url: 'http://192.168.0.15:8123/api/services/switch/turn_on'
+    headers:
+#    password: 'xxxxxx'
+      content_type: application/json
+    payload: '{"entity_id": "switch.shop_bay1"}'
+    
+  turn_off_shop_bay1:
+    method: POST
+    url: 'http://192.168.0.15:8123/api/services/switch/turn_off'
+    headers:
+#    password: 'xxxxxx'
+      content_type: application/json
+    payload: '{"entity_id": "switch.shop_bay1"}'
+
+  turn_on_shop_bay2:
+    method: POST
+    url: 'http://192.168.0.15:8123/api/services/switch/turn_on'
+    headers:
+#    password: 'xxxxxx'
+      content_type: application/json
+    payload: '{"entity_id": "switch.shop_bay2"}'
+    
+  turn_off_shop_bay2:
+    method: POST
+    url: 'http://192.168.0.15:8123/api/services/switch/turn_off'
+    headers:
+#    password: 'xxxxxx'
+      content_type: application/json
+    payload: '{"entity_id": "switch.shop_bay2"}'
+
+
+

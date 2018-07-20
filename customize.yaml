@@ -1,0 +1,55 @@
+binary_sensor.front_door_sensor:
+  device_class: door
+binary_sensor.attached_garage_door_sensor:
+  device_class: door
+binary_sensor.bay_1_door:
+  device_class: garage_door
+binary_sensor.back_slider_sensor:
+  device_class: door
+sensor.back_slider_alarm_level:
+  hidden: true
+sensor.back_slider_alarm_type:
+  hidden: true
+sensor.back_slider_burglar:
+  hidden: true
+sensor.back_slider_sourcenodeid:
+  hidden: true
+sensor.time:
+  hidden: true
+sensor.man_door:
+  device_class: door
+group.all_automations:
+  hidden: true
+  friendly_name: Automations
+group.all_switches:
+  hidden: false
+  friendly_name: Switches
+group.z_wave:
+  hidden: false
+group.all_lights:
+  hidden: false
+  friendly_name: Lights
+switch.bedroom_lamp:
+  device_class: light
+  icon: mdi:lightbulb
+light.level: {}
+binary_sensor.aeotec_zw089_recessed_door_sensor_gen5_sensor:
+  device_class: door
+sensor.dom_s8_ssid:
+  icon: mdi:access-point-network
+sensor.dom_s8_tx_stats:
+  icon: mdi:progress-upload
+sensor.dom_s8_rx_stats:
+  icon: mdi:progress-download
+sensor.spencer_5x_ssid:
+  icon: mdi:access-point-network
+sensor.spencer_5x_tx_stats:
+  icon: mdi:progress-upload
+sensor.spencer_5x_rx_stats:
+  icon: mdi:progress-download
+sensor.spencer_laptop_ssid:
+  icon: mdi:access-point-network
+sensor.spencer_laptop_tx_stats:
+  icon: mdi:progress-upload
+sensor.spencer_laptop_rx_stats:
+  icon: mdi:progress-download
